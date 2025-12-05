@@ -1,4 +1,5 @@
 
+
 import { UserData, DrugAdjustment } from '../types';
 
 export const calculateBMI = (weight: number, height: number): number => {
@@ -127,7 +128,7 @@ export const analyzeLiverHealth = (data: UserData) => {
   const recs: string[] = [];
   let pattern = '';
 
-  if (!labs.ast && !labs.alt) return null;
+  if (!labs.ast && !labs.alt && !labs.alp && !labs.bilirubin && !labs.inr && !labs.albumin) return null;
 
   const ast = labs.ast || 0;
   const alt = labs.alt || 0;
@@ -215,4 +216,59 @@ export const analyzeBloodPressure = (data: UserData) => {
   }
 
   return { stage, warnings, recs };
+};
+
+// --- IMMUNITY SMART LOGIC (NEW) ---
+export const analyzeImmunityHealth = (data: UserData) => {
+  const labs = data.labs;
+  const warnings: string[] = [];
+  const recs: string[] = [];
+
+  if (!labs.wbc && !labs.ferritin && !labs.crp && !labs.esr) return null;
+
+  // WBC Analysis (Normal: 4.5-11 x10^9/L)
+  if (labs.wbc !== undefined) {
+    if (labs.wbc < 4.5) {
+      warnings.push(`Low WBC (${labs.wbc}): Possible weakened immune system, increased infection risk.`);
+      recs.push('Consider immune-boosting foods (Vitamin C, Zinc) and stress management.');
+    } else if (labs.wbc > 11) {
+      warnings.push(`High WBC (${labs.wbc}): Possible infection, inflammation, or other underlying condition.`);
+      recs.push('Consult a doctor for further investigation.');
+    }
+  }
+
+  // Ferritin Analysis (Can be marker of inflammation or iron status)
+  if (labs.ferritin !== undefined) {
+    // Normal ranges vary, e.g., Male: 20-250 ng/mL, Female: 10-120 ng/mL
+    // High ferritin can indicate inflammation, low indicates iron deficiency affecting immunity
+    if (labs.ferritin > 250) { // Using a general high threshold
+      warnings.push(`Elevated Ferritin (${labs.ferritin}): May indicate inflammation. Requires further investigation.`);
+      recs.push('Focus on anti-inflammatory diet.');
+    } else if (labs.ferritin < 20) { // Using a general low threshold
+      warnings.push(`Low Ferritin (${labs.ferritin}): Possible iron deficiency, which can impact immune function.`);
+      recs.push('Increase iron-rich foods (lean red meat, spinach, lentils) with Vitamin C.');
+    }
+  }
+
+  // CRP Analysis (C-Reactive Protein, marker of inflammation, Normal: <10 mg/L)
+  if (labs.crp !== undefined) {
+    if (labs.crp > 10) {
+      warnings.push(`Elevated CRP (${labs.crp}): Significant inflammation detected. Possible infection or inflammatory disease.`);
+      recs.push('Consult a doctor for further diagnostic evaluation.');
+      recs.push('Consider anti-inflammatory diet (Omega-3s, turmeric).');
+    } else if (labs.crp > 3) { // High sensitivity CRP for cardiovascular risk, but also indicates mild inflammation
+      recs.push(`Mildly elevated CRP (${labs.crp}): May indicate low-grade inflammation. Focus on healthy lifestyle.`);
+    }
+  }
+
+  // ESR Analysis (Erythrocyte Sedimentation Rate, marker of inflammation, Normal: varies by age/gender)
+  if (labs.esr !== undefined) {
+    // General high threshold, age/gender adjusted norms needed for precision
+    if (labs.esr > 30) { 
+      warnings.push(`Elevated ESR (${labs.esr}): Indicates inflammation. Needs medical follow-up.`);
+      recs.push('Consult a doctor to identify the cause of inflammation.');
+    }
+  }
+
+  return { warnings, recs };
 };

@@ -1,10 +1,11 @@
 
+
 import React from 'react';
 import { UserData, Language } from '../types';
 import { DISEASE_DATA } from '../data';
 import { generatePDF } from '../utils/pdfGenerator';
-import { calculateCrCl, getCKDStage, analyzeRenalHealth, analyzeLiverHealth, getRenalDoseRecommendation, analyzeBloodPressure } from '../utils/healthCalculators';
-import { Download, Heart, Apple, Pill, Phone, ExternalLink, Calendar, CheckCircle, Dumbbell, AlertCircle, Info, Activity, Stethoscope, AlertTriangle } from 'lucide-react';
+import { calculateCrCl, getCKDStage, analyzeRenalHealth, analyzeLiverHealth, getRenalDoseRecommendation, analyzeBloodPressure, analyzeImmunityHealth } from '../utils/healthCalculators';
+import { Download, Heart, Apple, Pill, Phone, ExternalLink, Calendar, CheckCircle, Dumbbell, AlertCircle, Info, Activity, Stethoscope, AlertTriangle, ShieldCheck } from 'lucide-react';
 import { sanitizeHtmlToPlainText } from '../utils/textProcessors';
 // import { HypertensionMealPlanDetails } from './HypertensionMealPlanDetails'; // Removed import
 
@@ -32,11 +33,13 @@ export const ResultsView: React.FC<Props> = ({ data, lang }) => {
   const renalAnalysis = analyzeRenalHealth(data);
   const liverAnalysis = analyzeLiverHealth(data);
   const bpAnalysis = analyzeBloodPressure(data);
+  const immunityAnalysis = analyzeImmunityHealth(data); // New immunity analysis
   
   // Logic to show specific cards
   const showRenalCard = !!renalAnalysis.crCl || data.condition === 'renal_ckd';
   const showLiverCard = !!liverAnalysis?.pattern || data.condition === 'liver_disease';
   const showBPCard = !!bpAnalysis || data.condition === 'hypertension';
+  const showImmunityCard = immunityAnalysis && (immunityAnalysis.warnings.length > 0 || immunityAnalysis.recs.length > 0);
 
   const t = {
     consultation: isAr ? 'استشارة طبية' : 'Medical Consultation',
@@ -53,6 +56,7 @@ export const ResultsView: React.FC<Props> = ({ data, lang }) => {
     renalAlert: isAr ? 'تحليل وظائف الكلى' : 'Renal Function Analysis',
     liverAlert: isAr ? 'تحليل وظائف الكبد' : 'Liver Function Analysis',
     bpAlert: isAr ? 'تحليل ضغط الدم' : 'Cardiovascular Health Analysis',
+    immunityAlert: isAr ? 'تحليل المناعة' : 'Immunity Analysis', // New
     gfr: isAr ? 'معدل الترشيح (eGFR)' : 'Estimated GFR',
     stage: isAr ? 'المرحلة' : 'Stage',
     warnings: isAr ? 'تنبيهات هامة' : 'Critical Warnings',
@@ -66,7 +70,9 @@ export const ResultsView: React.FC<Props> = ({ data, lang }) => {
     yourDose: isAr ? 'جرعتك الموصى بها' : 'Your Recommended Dose',
     formula: isAr ? 'تم الحساب بواسطة معادلة Cockcroft-Gault' : 'Calculated via Cockcroft-Gault Equation',
     typeDrug: isAr ? 'دواء' : 'Drug',
-    typeSupp: isAr ? 'مكمل' : 'Supplement'
+    typeSupp: isAr ? 'مكمل' : 'Supplement',
+    immunityGuidance: isAr ? 'إرشادات لتقوية المناعة' : 'Immunity Boost Guidance', // New
+    immunityAdvice: isAr ? 'لتقوية مناعتك، ركز على نظام غذائي متوازن غني بالفيتامينات والمعادن، احصل على قسط كافٍ من النوم، وقم بإدارة التوتر. استشر طبيبك للمزيد من الإرشادات.' : 'To boost your immunity, focus on a balanced diet rich in vitamins and minerals, get adequate sleep, and manage stress. Consult your doctor for further guidance.' // New
   };
 
   return (
@@ -259,6 +265,51 @@ export const ResultsView: React.FC<Props> = ({ data, lang }) => {
                 {liverAnalysis.recs.map((rec, i) => <li key={i} className="pl-2 border-l-2 border-orange-200 dark:border-orange-800">{rec}</li>)}
               </ul>
             </div>
+          </div>
+        </div>
+      )}
+
+      {/* Dynamic Immunity Card (New) */}
+      {showImmunityCard && immunityAnalysis && (
+        <div className="bg-teal-50 dark:bg-teal-900/10 rounded-3xl shadow-lg p-8 border-l-8 border-teal-500">
+          <div className="flex items-center gap-3 mb-6 text-teal-700 dark:text-teal-400">
+            <ShieldCheck className="w-7 h-7" />
+            <h3 className="text-2xl font-bold">{t.immunityAlert}</h3>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8 mb-6">
+            {immunityAnalysis.warnings.length > 0 && (
+              <div className="bg-red-50 dark:bg-red-900/20 p-5 rounded-xl border border-red-100 dark:border-red-900/30 mb-4">
+                <h4 className="font-bold text-red-700 dark:text-red-400 mb-3 flex items-center gap-2 text-lg">
+                  <AlertTriangle size={20} /> {t.warnings}
+                </h4>
+                <ul className="space-y-2 text-red-800 dark:text-red-300 text-sm font-medium">
+                  {immunityAnalysis.warnings.map((w, i) => (
+                    <li key={i} className="flex items-start gap-2">
+                      <span className="mt-1.5 w-1.5 h-1.5 bg-red-500 rounded-full flex-shrink-0"></span>
+                      {w}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+            
+            {immunityAnalysis.recs.length > 0 && (
+              <div className="bg-white dark:bg-dark-card p-5 rounded-xl border border-teal-100 dark:border-teal-900/30 h-fit shadow-sm">
+                <h4 className="font-bold text-slate-700 dark:text-slate-200 mb-3 flex items-center gap-2">
+                  <CheckCircle size={18} className="text-teal-500" /> {t.recommendations}
+                </h4>
+                <ul className="space-y-2 text-slate-600 dark:text-slate-400 text-sm">
+                  {immunityAnalysis.recs.map((rec, i) => <li key={i} className="pl-2 border-l-2 border-teal-200 dark:border-teal-800">{rec}</li>)}
+                </ul>
+              </div>
+            )}
+            {/* If no specific warnings/recs from labs but the card is shown, could add a general message */}
+            {!immunityAnalysis.warnings.length && !immunityAnalysis.recs.length && (
+              <div className="md:col-span-2 bg-white dark:bg-dark-card p-5 rounded-xl border border-teal-100 dark:border-teal-900/30 shadow-sm">
+                <p className="text-slate-600 dark:text-slate-400 text-sm">{t.immunityAdvice}</p>
+              </div>
+            )}
           </div>
         </div>
       )}
@@ -555,34 +606,96 @@ export const ResultsView: React.FC<Props> = ({ data, lang }) => {
         </div>
       </div>
 
-      {/* General Meal Plan Display (for all conditions, including hypertension now) */}
-      <div className="bg-white dark:bg-dark-card rounded-3xl shadow-md p-8 transition-colors duration-300">
-        <div className="flex items-center gap-3 mb-8 text-orange-600 dark:text-orange-400">
-          <div className="p-2 bg-orange-50 dark:bg-orange-900/30 rounded-lg">
-            <Calendar size={24} />
+      {/* Conditional Meal Plan / Immunity Guidance Display */}
+      {data.condition === 'weak_immunity' ? (
+        <div className="bg-white dark:bg-dark-card rounded-3xl shadow-md p-8 transition-colors duration-300">
+          <div className="flex items-center gap-3 mb-8 text-teal-600 dark:text-teal-400">
+            <div className="p-2 bg-teal-50 dark:bg-teal-900/30 rounded-lg">
+              <ShieldCheck size={24} />
+            </div>
+            <h3 className="text-2xl font-bold">{t.immunityGuidance}</h3>
           </div>
-          <h3 className="text-2xl font-bold">{t.mealPlan}</h3>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {content.meal_plan.map((day) => (
-            <div key={day.day} className="border border-slate-100 dark:border-slate-700 rounded-2xl p-6 bg-orange-50/20 dark:bg-orange-900/5">
-              <h4 className="font-bold text-slate-800 dark:text-white mb-5 border-b border-orange-100 dark:border-orange-900/30 pb-3">
-                Day {day.day}
-              </h4>
-              <div className="space-y-5">
-                {day.meals.map((meal, idx) => (
-                  <div key={idx} className="flex items-start gap-4">
-                    <div className="text-xs font-bold uppercase text-orange-600 dark:text-orange-400 bg-white dark:bg-dark-card py-1 px-2.5 rounded-full border border-orange-100 dark:border-slate-700 h-fit shadow-sm">
-                      {meal.type}
-                    </div>
-                    <p className="text-sm text-slate-700 dark:text-slate-300 pt-0.5 leading-relaxed">{sanitizeHtmlToPlainText(meal.description)}</p>
-                  </div>
-                ))}
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed text-lg">
+            {t.immunityAdvice}
+          </p>
+          <div className="mt-6">
+            <h4 className="font-bold text-slate-800 dark:text-white mb-4 flex items-center gap-2 text-lg border-b border-teal-100 dark:border-teal-700 pb-2">
+              <CheckCircle className="text-teal-500 w-5 h-5" />
+              {t.lifestyle}
+            </h4>
+            <ul className="space-y-3">
+              {content.lifestyle_modifications.map((mod, idx) => (
+                <li key={idx} className="flex gap-3 text-slate-700 dark:text-slate-300 bg-teal-50/50 dark:bg-teal-900/10 p-3 rounded-lg border-l-4 border-teal-400 dark:border-teal-600">
+                  {mod}
+                </li>
+              ))}
+            </ul>
+          </div>
+           <div className="mt-6">
+            <h4 className="font-bold text-slate-800 dark:text-white mb-4 flex items-center gap-2 text-lg border-b border-teal-100 dark:border-teal-700 pb-2">
+              <Apple className="text-green-500 w-5 h-5" />
+              {t.nutrition}
+            </h4>
+            <div className="space-y-4">
+              <div>
+                <h5 className="font-semibold text-green-700 dark:text-green-300 mb-2">{t.allowed}</h5>
+                <div className="flex flex-wrap gap-2">
+                  {content.nutrition.allowed.map((item, i) => (
+                    <span key={i} className="bg-green-50 dark:bg-green-900/20 text-green-800 dark:text-green-300 text-sm px-3 py-1.5 rounded-full border border-green-100 dark:border-green-800/50">{item}</span>
+                  ))}
+                </div>
+              </div>
+              <div>
+                <h5 className="font-semibold text-red-700 dark:text-red-300 mb-2">{t.avoid}</h5>
+                <div className="flex flex-wrap gap-2">
+                  {content.nutrition.avoid.map((item, i) => (
+                    <span key={i} className="bg-red-50 dark:bg-red-900/20 text-red-800 dark:text-red-300 text-sm px-3 py-1.5 rounded-full border border-red-100 dark:border-red-800/50">{item}</span>
+                  ))}
+                </div>
+              </div>
+              <div className="mt-4">
+                <h5 className="font-semibold text-blue-700 dark:text-blue-300 mb-2">{t.tips}</h5>
+                <ul className="space-y-2">
+                  {content.nutrition.tips.map((tip, i) => (
+                    <li key={i} className="text-slate-700 dark:text-slate-300 text-sm flex items-start gap-2">
+                      <span className="mt-1.5 w-1.5 h-1.5 bg-blue-500 rounded-full flex-shrink-0"></span>
+                      {tip}
+                    </li>
+                  ))}
+                </ul>
               </div>
             </div>
-          ))}
+          </div>
         </div>
-      </div>
+      ) : (
+        <div className="bg-white dark:bg-dark-card rounded-3xl shadow-md p-8 transition-colors duration-300">
+          <div className="flex items-center gap-3 mb-8 text-orange-600 dark:text-orange-400">
+            <div className="p-2 bg-orange-50 dark:bg-orange-900/30 rounded-lg">
+              <Calendar size={24} />
+            </div>
+            <h3 className="text-2xl font-bold">{t.mealPlan}</h3>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {content.meal_plan.map((day) => (
+              <div key={day.day} className="border border-slate-100 dark:border-slate-700 rounded-2xl p-6 bg-orange-50/20 dark:bg-orange-900/5">
+                <h4 className="font-bold text-slate-800 dark:text-white mb-5 border-b border-orange-100 dark:border-orange-900/30 pb-3">
+                  Day {day.day}
+                </h4>
+                <div className="space-y-5">
+                  {day.meals.map((meal, idx) => (
+                    <div key={idx} className="flex items-start gap-4">
+                      <div className="text-xs font-bold uppercase text-orange-600 dark:text-orange-400 bg-white dark:bg-dark-card py-1 px-2.5 rounded-full border border-orange-100 dark:border-slate-700 h-fit shadow-sm">
+                        {meal.type}
+                      </div>
+                      <p className="text-sm text-slate-700 dark:text-slate-300 pt-0.5 leading-relaxed">{sanitizeHtmlToPlainText(meal.description)}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 };

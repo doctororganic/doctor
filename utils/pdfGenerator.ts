@@ -1,7 +1,8 @@
+
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
 import { UserData, DiseaseContent } from '../types';
-import { calculateCrCl, getCKDStage, analyzeRenalHealth, analyzeLiverHealth, analyzeBloodPressure } from '../utils/healthCalculators';
+import { calculateCrCl, getCKDStage, analyzeRenalHealth, analyzeLiverHealth, analyzeBloodPressure, analyzeImmunityHealth } from '../utils/healthCalculators';
 
 export const generatePDF = (userData: UserData, data: DiseaseContent, lang: 'en' | 'ar') => {
   const doc = new jsPDF();
@@ -27,6 +28,7 @@ export const generatePDF = (userData: UserData, data: DiseaseContent, lang: 'en'
   const renalAnalysis = analyzeRenalHealth(userData);
   const liverAnalysis = analyzeLiverHealth(userData);
   const bpAnalysis = analyzeBloodPressure(userData);
+  const immunityAnalysis = analyzeImmunityHealth(userData); // New immunity analysis
 
   // Kidney Function & Electrolytes Analysis
   if (renalAnalysis.crCl !== null || renalAnalysis.warnings.length > 0 || renalAnalysis.recs.length > 0) {
@@ -177,6 +179,51 @@ export const generatePDF = (userData: UserData, data: DiseaseContent, lang: 'en'
       doc.setTextColor(0, 0, 0);
       yPos += 6;
       bpAnalysis.recs.forEach(r => {
+        const recLines = doc.splitTextToSize(`• ${r}`, 180);
+        doc.text(recLines, 14, yPos);
+        yPos += recLines.length * 5;
+      });
+    }
+  }
+
+  // Immunity Analysis
+  if (immunityAnalysis !== null && (immunityAnalysis.warnings.length > 0 || immunityAnalysis.recs.length > 0)) {
+    yPos += 10;
+    if (yPos > 250) { // Check for page overflow
+      doc.addPage();
+      yPos = 20;
+    }
+    doc.setFontSize(14);
+    doc.setTextColor(0, 80, 150);
+    doc.text(isAr ? "تحليل المناعة" : "Immunity Analysis", 14, yPos);
+    doc.setTextColor(0, 0, 0);
+    doc.setFontSize(10);
+    yPos += 6;
+
+    if (immunityAnalysis.warnings.length > 0) {
+      yPos += 5;
+      doc.setFontSize(12);
+      doc.setTextColor(150, 0, 0); // Red color for warnings
+      doc.text(isAr ? "تنبيهات هامة:" : "Important Warnings:", 14, yPos);
+      doc.setFontSize(10);
+      doc.setTextColor(0, 0, 0);
+      yPos += 6;
+      immunityAnalysis.warnings.forEach(w => {
+        const warningLines = doc.splitTextToSize(`• ${w}`, 180);
+        doc.text(warningLines, 14, yPos);
+        yPos += warningLines.length * 5;
+      });
+    }
+
+    if (immunityAnalysis.recs.length > 0) {
+      yPos += 5;
+      doc.setFontSize(12);
+      doc.setTextColor(0, 100, 0); // Green color for recommendations
+      doc.text(isAr ? "توصيات:" : "Recommendations:", 14, yPos);
+      doc.setFontSize(10);
+      doc.setTextColor(0, 0, 0);
+      yPos += 6;
+      immunityAnalysis.recs.forEach(r => {
         const recLines = doc.splitTextToSize(`• ${r}`, 180);
         doc.text(recLines, 14, yPos);
         yPos += recLines.length * 5;

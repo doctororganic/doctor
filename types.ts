@@ -1,4 +1,5 @@
 
+
 export type Language = 'en' | 'ar';
 
 export interface UserData {
@@ -16,6 +17,10 @@ export interface UserData {
     wbc?: number;
     ferritin?: number;
     
+    // Immunity
+    crp?: number; // C-Reactive Protein
+    esr?: number; // Erythrocyte Sedimentation Rate
+
     // Cardiovascular
     systolic_bp?: number;
     diastolic_bp?: number;

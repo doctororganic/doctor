@@ -1,4 +1,5 @@
 
+
 import { DiseaseDatabase } from './types';
 
 export const DISEASE_DATA: DiseaseDatabase = {
@@ -121,9 +122,9 @@ export const DISEASE_DATA: DiseaseDatabase = {
         { day: 2, meals: [{ type: "الفطور", description: "بياض بيض مع توست أبيض." }, { type: "الغداء", description: "برجر ديك رومي بخس." }, { type: "العشاء", description: "مكرونة بيضاء مع ثوم وزيت." }] },
         { day: 3, meals: [{ type: "الفطور", description: "توست أبيض بزبدة قليلة الصوديوم ومربى." }, { type: "الغداء", description: "سلطة بياض بيض على خبز أبيض." }, { type: "العشاء", description: "جمبري مقلي مع فلفل وبصل وأرز أبيض." }] },
         { day: 4, meals: [{ type: "الفطور", description: "حبوب أرز منتفخة مع حليب اللوز." }, { type: "الغداء", description: "بقايا الجمبري المقلي." }, { type: "العشاء", description: "دجاج مشوي (بدون جلد) مع جزر وكوسا على البخار." }] },
-        { day: 5, meals: [{ type: "الفطور", description: "بانكيك (محضر منزلياً بمسحوق قليل الفوسفور) مع التوت." }, { type: "الغداء", description: "سلطة تونة قليلة الصوديوم مع بسكويت." }, { type: "العشاء", description: "جزء صغير من لحم البقر قليل الدهن مع قرنبيط مهروس." }] },
-        { day: 6, meals: [{ type: "الفطور", description: "شرائح تفاح مع كمية صغيرة من زبدة الفول السوداني." }, { type: "الغداء", description: "بقايا اللحم والقرنبيط." }, { type: "العشاء", description: "شوربة دجاج بالشعيرية (باستخدام مرق قليل الصوديوم)." }] },
-        { day: 7, meals: [{ type: "الفطور", description: "بياض بيض مخفوق مع سبانخ." }, { type: "الغداء", description: "شرائح خيار وفلفل مع صلصة خفيفة." }, { type: "العشاء", description: "سمك بلطي مخبوز بالليمون، أرز أبيض وهليون على البخار." }] }
+        { day: 5, meals: [{ type: "Breakfast", description: "بانكيك (محضر منزلياً بمسحوق قليل الفوسفور) مع التوت." }, { type: "Lunch", description: "سلطة تونة قليلة الصوديوم مع بسكويت." }, { type: "Dinner", description: "جزء صغير من لحم البقر قليل الدهن مع قرنبيط مهروس." }] },
+        { day: 6, meals: [{ type: "Breakfast", description: "شرائح تفاح مع كمية صغيرة من زبدة الفول السوداني." }, { type: "Lunch", description: "بقايا اللحم والقرنبيط." }, { type: "Dinner", description: "شوربة دجاج بالشعيرية (باستخدام مرق قليل الصوديوم)." }] },
+        { day: 7, meals: [{ type: "Breakfast", description: "بياض بيض مخفوق مع سبانخ." }, { type: "Lunch", description: "شرائح خيار وفلفل مع صلصة خفيفة." }, { type: "Dinner", description: "سمك بلطي مخبوز بالليمون، أرز أبيض وهليون على البخار." }] }
       ],
       honey_advice: "بديل آمن للسكر. محتواه من البوتاسيوم منخفض.",
       special_tables: {
@@ -359,19 +360,35 @@ export const DISEASE_DATA: DiseaseDatabase = {
       nutrition: { allowed: ["Omega-3 rich fish", "Walnuts", "Leafy greens"], avoid: ["Alcohol", "Processed sugar"], tips: ["Eat tryptophan-rich foods."] },
       medications: [{ name: "Sertraline", dose: "50mg", notes: "SSRI." }, { name: "Bupropion", dose: "150mg", notes: "NDRI." }],
       supplements: [{ name: "Vitamin D", dose: "2000 IU", notes: "Mood." }, { name: "Omega-3", dose: "1g", notes: "Brain health." }],
-      meal_plan: [{ day: 1, meals: [{ type: "Breakfast", description: "Oatmeal with walnuts." }, { type: "Dinner", description: "Salmon with spinach." }] }],
+      meal_plan: [
+        { day: 1, meals: [{ type: "Breakfast", description: "Oatmeal with walnuts." }, { type: "Lunch", description: "Spinach salad with grilled chicken." }, { type: "Dinner", description: "Baked salmon with steamed asparagus." }] },
+        { day: 2, meals: [{ type: "Breakfast", description: "Scrambled eggs with whole-wheat toast." }, { type: "Lunch", description: "Lentil soup." }, { type: "Dinner", description: "Turkey stir-fry with colorful vegetables." }] },
+        { day: 3, meals: [{ type: "Breakfast", description: "Greek yogurt with berries and chia seeds." }, { type: "Lunch", description: "Quinoa salad with chickpeas." }, { type: "Dinner", description: "Lean beef with a side of sweet potato." }] },
+        { day: 4, meals: [{ type: "Breakfast", description: "Whole-wheat pancakes with a small amount of maple syrup." }, { type: "Lunch", description: "Leftover beef and sweet potato." }, { type: "Dinner", description: "Veggie burger on a whole-wheat bun with a side salad." }] },
+        { day: 5, meals: [{ type: "Breakfast", description: "Smoothie with spinach, banana, and almond milk." }, { type: "Lunch", description: "Tuna salad sandwich on whole-wheat bread." }, { type: "Dinner", description: "Chicken and vegetable skewers." }] },
+        { day: 6, meals: [{ type: "Breakfast", description: "Cottage cheese with sliced peaches." }, { type: "Lunch", description: "Leftover chicken skewers." }, { type: "Dinner", description: "Black bean soup with a side of whole-grain crackers." }] },
+        { day: 7, meals: [{ type: "Breakfast", description: "Avocado toast on whole-grain bread." }, { type: "Lunch", description: "Mixed green salad with grilled shrimp." }, { type: "Dinner", description: "Baked cod with brown rice and green beans." }] }
+      ],
       honey_advice: "1 tsp with cinnamon. Supports serotonin."
     },
     ar: {
       name: "الاكتئاب الرئيسي",
       overview: "حزن مستمر وفقدان المتعة.",
       symptoms: ["حزن", "فقدان متعة", "تغير نوم", "تعب"],
-      lifestyle_modifications: ["نوم منتظم.", "تعرض للشمس.", "تواصل اجتماعي."],
-      workout_plan: ["مشي 30 دقيقة.", "يوغا."],
-      nutrition: { allowed: ["سمك", "جوز", "خضروات"], avoid: ["كحول", "سكر"], tips: ["تريبتوفان."] },
+      lifestyle_modifications: ["نوم منتظم.", "تعرض للشمس.", "تواصل اجتماعي.", "كتابة الامتنان."],
+      workout_plan: ["مشي 30 دقيقة يومياً.", "يوغا."],
+      nutrition: { allowed: ["سمك غني بأوميغا-3", "جوز", "خضروات ورقية"], avoid: ["كحول", "سكر مصنع"], tips: ["تناول أطعمة غنية بالتريبتوفان."] },
       medications: [{ name: "سيرترالين", dose: "50 مجم", notes: "مضاد اكتئاب." }],
-      supplements: [{ name: "فيتامين د", dose: "2000 وحدة", notes: "للمزاج." }],
-      meal_plan: [{ day: 1, meals: [{ type: "الفطور", description: "شوفان." }, { type: "العشاء", description: "سلمون." }] }],
+      supplements: [{ name: "فيتامين د", dose: "2000 وحدة", notes: "لتحسين المزاج." }, { name: "أوميغا-3", dose: "1 جم", notes: "لصحة الدماغ." }],
+      meal_plan: [
+        { day: 1, meals: [{ type: "الفطور", description: "شوفان مع جوز." }, { type: "الغداء", description: "سلطة سبانخ مع دجاج مشوي." }, { type: "العشاء", description: "سلمون مخبوز مع هليون على البخار." }] },
+        { day: 2, meals: [{ type: "الفطور", description: "بيض مخفوق مع خبز قمح كامل." }, { type: "الغداء", description: "شوربة عدس." }, { type: "العشاء", description: "ديك رومي مقلي مع خضروات ملونة." }] },
+        { day: 3, meals: [{ type: "الفطور", description: "زبادي يوناني مع توت وبذور الشيا." }, { type: "الغداء", description: "سلطة كينوا مع حمص." }, { type: "العشاء", description: "لحم بقري قليل الدهن مع جانب من البطاطا الحلوة." }] },
+        { day: 4, meals: [{ type: "الفطور", description: "بانكيك قمح كامل مع كمية صغيرة من شراب القيقب." }, { type: "الغداء", description: "بقايا لحم البقر والبطاطا الحلوة." }, { type: "العشاء", description: "برجر خضروات في خبز قمح كامل مع سلطة جانبية." }] },
+        { day: 5, meals: [{ type: "الفطور", description: "سموذي سبانخ، موز، وحليب اللوز." }, { type: "الغداء", description: "ساندويتش سلطة تونة على خبز قمح كامل." }, { type: "العشاء", description: "أسياخ دجاج وخضروات." }] },
+        { day: 6, meals: [{ type: "الفطور", description: "جبن قريش مع شرائح خوخ." }, { type: "الغداء", description: "بقايا أسياخ الدجاج." }, { type: "العشاء", description: "شوربة فاصوليا سوداء مع جانب من البسكويت الكامل." }] },
+        { day: 7, meals: [{ type: "الفطور", description: "توست أفوكادو على خبز قمح كامل." }, { type: "الغداء", description: "سلطة خضراء مشكلة مع جمبري مشوي." }, { type: "العشاء", description: "سمك القد مخبوز مع أرز بني وفاصوليا خضراء." }] }
+      ],
       honey_advice: "عسل وقرفة. يدعم السيروتونين."
     }
   },
@@ -387,20 +404,36 @@ export const DISEASE_DATA: DiseaseDatabase = {
       nutrition: { allowed: ["Potassium foods", "Low fat dairy"], avoid: ["Salt", "Licorice"], tips: ["Read labels."] },
       medications: [{ name: "Lisinopril", dose: "10mg", notes: "ACEi." }, { name: "Amlodipine", dose: "5mg", notes: "CCB." }],
       supplements: [{ name: "Magnesium", dose: "400mg", notes: "Vasodilation." }],
-      meal_plan: [{ day: 1, meals: [{ type: "Breakfast", description: "Oatmeal." }, { type: "Dinner", description: "Grilled chicken." }] }],
+      meal_plan: [
+        { day: 1, meals: [{ type: "Breakfast", description: "Oatmeal with berries." }, { type: "Lunch", description: "Grilled chicken salad (low sodium dressing)." }, { type: "Dinner", description: "Baked cod with steamed green beans." }] },
+        { day: 2, meals: [{ type: "Breakfast", description: "Whole-wheat toast with avocado." }, { type: "Lunch", description: "Lentil soup (homemade, low sodium)." }, { type: "Dinner", description: "Turkey meatballs with zucchini noodles." }] },
+        { day: 3, meals: [{ type: "Breakfast", description: "Greek yogurt with unsalted nuts." }, { type: "Lunch", description: "Spinach salad with chickpeas and vinaigrette." }, { type: "Dinner", description: "Brown rice with mixed vegetables and tofu." }] },
+        { day: 4, meals: [{ type: "Breakfast", description: "Smoothie with banana, spinach, and almond milk." }, { type: "Lunch", description: "Leftover brown rice and vegetable tofu." }, { type: "Dinner", description: "Salmon with quinoa and roasted bell peppers." }] },
+        { day: 5, meals: [{ type: "Breakfast", description: "Scrambled egg whites with whole-wheat bread." }, { type: "Lunch", description: "Low-sodium tuna salad (with Greek yogurt) on lettuce cups." }, { type: "Dinner", description: "Chicken stir-fry (low sodium soy sauce) with broccoli." }] },
+        { day: 6, meals: [{ type: "Breakfast", description: "Puffed wheat cereal with skim milk." }, { type: "Lunch", description: "Leftover chicken stir-fry." }, { type: "Dinner", description: "Vegetable and bean chili (homemade, low sodium)." }] },
+        { day: 7, meals: [{ type: "Breakfast", description: "Fruit salad with a handful of unsalted almonds." }, { type: "Lunch", description: "Quinoa and black bean salad." }, { type: "Dinner", description: "Lean grilled steak with a large mixed green salad." }] }
+      ],
       honey_advice: "Contains nitric oxide metabolites. 1 tsp daily."
     },
     ar: {
       name: "ارتفاع ضغط الدم",
       overview: "ارتفاع الضغط. حمية DASH أساسية.",
       symptoms: ["صداع", "دوخة"],
-      lifestyle_modifications: ["حمية DASH.", "تقليل ملح."],
-      workout_plan: ["هوائية 150 دقيقة.", "تجنب الأثقال الثقيلة."],
-      nutrition: { allowed: ["بوتاسيوم", "ألبان قليلة دسم"], avoid: ["ملح"], tips: ["قراءة الملصقات."] },
+      lifestyle_modifications: ["حمية DASH.", "تقليل ملح.", "إنقاص الوزن (5-10%).", "تحديد الصوديوم أقل من 2.3 جرام/يوم."],
+      workout_plan: ["هوائية 150 دقيقة/أسبوع.", "تجنب الأثقال الثقيلة إذا كان الضغط غير متحكم به."],
+      nutrition: { allowed: ["أطعمة غنية بالبوتاسيوم", "ألبان قليلة الدسم"], avoid: ["ملح", "عرق السوس"], tips: ["قراءة الملصقات الغذائية بعناية."] },
       medications: [{ name: "ليسينوبريل", dose: "10 مجم", notes: "خافض ضغط." }],
       supplements: [{ name: "مغنيسيوم", dose: "400 مجم", notes: "موسع أوعية." }],
-      meal_plan: [{ day: 1, meals: [{ type: "الفطور", description: "شوفان." }, { type: "العشاء", description: "دجاج." }] }],
-      honey_advice: "يوسع الأوعية. ملعقة صغيرة."
+      meal_plan: [
+        { day: 1, meals: [{ type: "الفطور", description: "شوفان مع توت." }, { type: "الغداء", description: "سلطة دجاج مشوي (صلصة قليلة الصوديوم)." }, { type: "العشاء", description: "سمك القد مخبوز مع فاصوليا خضراء مطهوة بالبخار." }] },
+        { day: 2, meals: [{ type: "الفطور", description: "خبز قمح كامل مع أفوكادو." }, { type: "الغداء", description: "شوربة عدس (منزلية الصنع، قليلة الصوديوم)." }, { type: "العشاء", description: "كرات لحم الديك الرومي مع نودلز الكوسا." }] },
+        { day: 3, meals: [{ type: "الفطور", description: "زبادي يوناني مع مكسرات غير مملحة." }, { type: "الغداء", description: "سلطة سبانخ مع حمص وصلصة خل." }, { type: "العشاء", description: "أرز بني مع خضروات مشكلة وتوفو." }] },
+        { day: 4, meals: [{ type: "الفطور", description: "سموذي موز، سبانخ، وحليب اللوز." }, { type: "الغداء", description: "بقايا أرز بني وخضروات وتوفو." }, { type: "العشاء", description: "سلمون مع كينوا وفلفل حلو مشوي." }] },
+        { day: 5, meals: [{ type: "الفطور", description: "بياض بيض مخفوق مع خبز قمح كامل." }, { type: "الغداء", description: "سلطة تونة قليلة الصوديوم (مع زبادي يوناني) في أكواب خس." }, { type: "العشاء", description: "دجاج مقلي (صلصة صويا قليلة الصوديوم) مع بروكلي." }] },
+        { day: 6, meals: [{ type: "الفطور", description: "حبوب قمح منتفخة مع حليب خالي الدسم." }, { type: "الغداء", description: "بقايا دجاج مقلي." }, { type: "العشاء", description: "شيلي خضار وفاصوليا (منزلي الصنع، قليل الصوديوم)." }] },
+        { day: 7, meals: [{ type: "الفطور", description: "سلطة فواكه مع حفنة من اللوز غير المملح." }, { type: "الغداء", description: "سلطة كينوا وفاصوليا سوداء." }, { type: "العشاء", description: "ستيك مشوي قليل الدهن مع سلطة خضراء مشكلة كبيرة." }] }
+      ],
+      honey_advice: "يوسع الأوعية. ملعقة صغيرة يومياً."
     }
   },
 
@@ -415,19 +448,35 @@ export const DISEASE_DATA: DiseaseDatabase = {
       nutrition: { allowed: ["Cherries", "Vitamin C", "Coffee"], avoid: ["Red meat", "Shellfish", "Beer"], tips: ["Tart cherry juice."] },
       medications: [{ name: "Allopurinol", dose: "Daily", notes: "Preventive." }, { name: "Colchicine", dose: "Acute", notes: "Flares." }],
       supplements: [{ name: "Vitamin C", dose: "500mg", notes: "Lowers uric acid." }],
-      meal_plan: [{ day: 1, meals: [{ type: "Breakfast", description: "Yogurt cherries." }, { type: "Dinner", description: "Tofu stir fry." }] }],
+      meal_plan: [
+        { day: 1, meals: [{ type: "Breakfast", description: "Yogurt with tart cherries." }, { type: "Lunch", description: "Vegetable soup." }, { type: "Dinner", description: "Tofu stir-fry with brown rice." }] },
+        { day: 2, meals: [{ type: "Breakfast", description: "Oatmeal with berries." }, { type: "Lunch", description: "Quinoa salad with mixed vegetables." }, { type: "Dinner", description: "Baked chicken breast with steamed green beans." }] },
+        { day: 3, meals: [{ type: "Breakfast", description: "Whole-wheat toast with avocado." }, { type: "Lunch", description: "Leftover baked chicken and green beans." }, { type: "Dinner", description: "Eggplant parmesan (baked, not fried) with whole-wheat pasta." }] },
+        { day: 4, meals: [{ type: "Breakfast", description: "Scrambled eggs with spinach." }, { type: "Lunch", description: "Lentil salad." }, { type: "Dinner", description: "Grilled salmon with a large mixed green salad." }] },
+        { day: 5, meals: [{ type: "Breakfast", description: "Fruit smoothie with kale." }, { type: "Lunch", description: "Vegetable and bean wrap." }, { type: "Dinner", description: "Brown rice bowl with black beans and corn." }] },
+        { day: 6, meals: [{ type: "Breakfast", description: "Cottage cheese with pineapple." }, { type: "Lunch", description: "Leftover rice bowl." }, { type: "Dinner", description: "Chicken noodle soup (low sodium broth)." }] },
+        { day: 7, meals: [{ type: "Breakfast", description: "Whole-wheat pancakes with a small amount of maple syrup." }, { type: "Lunch", description: "Tuna salad sandwich (light mayo) on whole-wheat bread." }, { type: "Dinner", description: "Baked tilapia with steamed broccoli and a small baked potato." }] }
+      ],
       honey_advice: "Inhibits xanthine oxidase. 1 tbsp daily."
     },
     ar: {
       name: "النقرس",
       overview: "التهاب مفاصل يوريك.",
-      symptoms: ["ألم إبهام القدم", "احمرار"],
-      lifestyle_modifications: ["شرب ماء.", "تجنب كحول.", "إنقاص وزن."],
-      workout_plan: ["سباحة.", "راحة وقت الألم."],
-      nutrition: { allowed: ["كرز", "قهوة"], avoid: ["لحم أحمر", "محار"], tips: ["عصير كرز."] },
-      medications: [{ name: "ألوبيورينول", dose: "يومياً", notes: "وقاية." }],
-      supplements: [{ name: "فيتامين سي", dose: "500 مجم", notes: "يخفض اليوريك." }],
-      meal_plan: [{ day: 1, meals: [{ type: "الفطور", description: "زبادي وكرز." }, { type: "العشاء", description: "توفو." }] }],
+      symptoms: ["ألم إبهام القدم شديد", "احمرار", "تورم"],
+      lifestyle_modifications: ["شرب الماء بكمية كافية.", "تجنب الكحول/البيرة.", "إنقاص الوزن تدريجياً."],
+      workout_plan: ["تمارين منخفضة التأثير مثل السباحة.", "الراحة أثناء نوبات الألم الحادة."],
+      nutrition: { allowed: ["كرز", "فيتامين سي", "قهوة"], avoid: ["لحم أحمر", "محار", "بيرة"], tips: ["عصير الكرز اللاذع."] },
+      medications: [{ name: "ألوبيورينول", dose: "يومياً", notes: "للوقاية من النوبات." }],
+      supplements: [{ name: "فيتامين سي", dose: "500 مجم", notes: "يخفض حمض اليوريك." }],
+      meal_plan: [
+        { day: 1, meals: [{ type: "الفطور", description: "زبادي مع كرز حامض." }, { type: "الغداء", description: "شوربة خضار." }, { type: "العشاء", description: "توفو مقلي مع أرز بني." }] },
+        { day: 2, meals: [{ type: "الفطور", description: "شوفان مع توت." }, { type: "الغداء", description: "سلطة كينوا مع خضروات مشكلة." }, { type: "العشاء", description: "صدر دجاج مخبوز مع فاصوليا خضراء مطهوة بالبخار." }] },
+        { day: 3, meals: [{ type: "الفطور", description: "خبز قمح كامل مع أفوكادو." }, { type: "الغداء", description: "بقايا دجاج مخبوز وفاصوليا خضراء." }, { type: "العشاء", description: "باذنجان بارميزان (مخبوز، غير مقلي) مع مكرونة قمح كامل." }] },
+        { day: 4, meals: [{ type: "الفطور", description: "بيض مخفوق مع سبانخ." }, { type: "الغداء", description: "سلطة عدس." }, { type: "العشاء", description: "سلمون مشوي مع سلطة خضراء كبيرة." }] },
+        { day: 5, meals: [{ type: "الفطور", description: "سموذي فواكه مع كيل." }, { type: "الغداء", description: "راب خضروات وفاصوليا." }, { type: "العشاء", description: "وعاء أرز بني مع فاصوليا سوداء وذرة." }] },
+        { day: 6, meals: [{ type: "الفطور", description: "جبن قريش مع أناناس." }, { type: "الغداء", description: "بقايا وعاء الأرز." }, { type: "العشاء", description: "شوربة دجاج بالشعيرية (مرق قليل الصوديوم)." }] },
+        { day: 7, meals: [{ type: "الفطور", description: "بانكيك قمح كامل مع كمية صغيرة من شراب القيقب." }, { type: "الغداء", description: "ساندويتش سلطة تونة (مايونيز خفيف) على خبز قمح كامل." }, { type: "العشاء", description: "سمك بلطي مخبوز مع بروكلي مطهو بالبخار وبطاطا مخبوزة صغيرة." }] }
+      ],
       honey_advice: "يقلل اليوريك. ملعقة يومياً."
     }
   },
@@ -443,7 +492,15 @@ export const DISEASE_DATA: DiseaseDatabase = {
       nutrition: { allowed: ["Magnesium foods", "Omega-3"], avoid: ["Sulfites"], tips: ["Coffee helps."] },
       medications: [{ name: "Albuterol", dose: "PRN", notes: "Rescue." }, { name: "ICS", dose: "Daily", notes: "Controller." }],
       supplements: [{ name: "Magnesium", dose: "400mg", notes: "Bronchodilator." }],
-      meal_plan: [{ day: 1, meals: [{ type: "Breakfast", description: "Spinach smoothie." }, { type: "Dinner", description: "Salmon." }] }],
+      meal_plan: [
+        { day: 1, meals: [{ type: "Breakfast", description: "Spinach smoothie." }, { type: "Lunch", description: "Chicken and vegetable salad." }, { type: "Dinner", description: "Baked salmon with quinoa." }] },
+        { day: 2, meals: [{ type: "Breakfast", description: "Oatmeal with berries." }, { type: "Lunch", description: "Lentil soup." }, { type: "Dinner", description: "Turkey breast with roasted sweet potato." }] },
+        { day: 3, meals: [{ type: "Breakfast", description: "Scrambled eggs with whole-wheat toast." }, { type: "Lunch", description: "Leftover turkey and sweet potato." }, { type: "Dinner", description: "Pasta with tomato sauce and basil." }] },
+        { day: 4, meals: [{ type: "Breakfast", description: "Yogurt with flax seeds." }, { type: "Lunch", description: "Tuna salad sandwich on whole-wheat bread." }, { type: "Dinner", description: "Grilled chicken with broccoli." }] },
+        { day: 5, meals: [{ type: "Breakfast", description: "Fruit salad." }, { type: "Lunch", description: "Vegetable soup." }, { type: "Dinner", description: "Fish tacos with avocado and cabbage slaw." }] },
+        { day: 6, meals: [{ type: "Breakfast", description: "Whole-wheat pancakes with fruit." }, { type: "Lunch", description: "Leftover fish tacos." }, { type: "Dinner", description: "Beef stir-fry with mixed vegetables and brown rice." }] },
+        { day: 7, meals: [{ type: "Breakfast", description: "Smoothie with kale, banana, and almond milk." }, { type: "Lunch", description: "Chickpea salad." }, { type: "Dinner", description: "Baked cod with asparagus and wild rice." }] }
+      ],
       honey_advice: "Soothes cough. 1 tsp at night."
     },
     ar: {
@@ -451,12 +508,20 @@ export const DISEASE_DATA: DiseaseDatabase = {
       overview: "التهاب الشعب الهوائية.",
       symptoms: ["أزيز", "سعال", "ضيق نفس"],
       lifestyle_modifications: ["تجنب المهيجات.", "تمارين تنفس."],
-      workout_plan: ["سباحة.", "إحماء."],
-      nutrition: { allowed: ["مغنيسيوم", "أوميغا 3"], avoid: ["مواد حافظة"], tips: ["القهوة مفيدة."] },
+      workout_plan: ["سباحة.", "إحماء جيد قبل التمرين."],
+      nutrition: { allowed: ["أطعمة غنية بالمغنيسيوم", "أوميغا-3"], avoid: ["كبريتيت"], tips: ["القهوة تساعد في توسيع الشعب الهوائية."] },
       medications: [{ name: "فنتولين", dose: "عند اللزوم", notes: "إسعافي." }],
-      supplements: [{ name: "مغنيسيوم", dose: "400 مجم", notes: "موسع." }],
-      meal_plan: [{ day: 1, meals: [{ type: "الفطور", description: "سموذي." }, { type: "العشاء", description: "سلمون." }] }],
-      honey_advice: "يهدئ السعال. ملعقة قبل النوم."
+      supplements: [{ name: "مغنيسيوم", dose: "400 مجم", notes: "موسع للشعب الهوائية." }],
+      meal_plan: [
+        { day: 1, meals: [{ type: "الفطور", description: "سموذي سبانخ." }, { type: "الغداء", description: "سلطة دجاج وخضار." }, { type: "العشاء", description: "سلمون مخبوز مع كينوا." }] },
+        { day: 2, meals: [{ type: "الفطور", description: "شوفان مع توت." }, { type: "الغداء", description: "شوربة عدس." }, { type: "العشاء", description: "صدر ديك رومي مع بطاطا حلوة مشوية." }] },
+        { day: 3, meals: [{ type: "الفطور", description: "بيض مخفوق مع خبز قمح كامل." }, { type: "الغداء", description: "بقايا ديك رومي وبطاطا حلوة." }, { type: "العشاء", description: "مكرونة بصلصة الطماطم والريحان." }] },
+        { day: 4, meals: [{ type: "الفطور", description: "زبادي مع بذور الكتان." }, { type: "الغداء", description: "ساندويتش سلطة تونة على خبز قمح كامل." }, { type: "العشاء", description: "دجاج مشوي مع بروكلي." }] },
+        { day: 5, meals: [{ type: "الفطور", description: "سلطة فواكه." }, { type: "الغداء", description: "شوربة خضروات." }, { type: "العشاء", description: "تاكو سمك مع أفوكادو وسلطة ملفوف." }] },
+        { day: 6, meals: [{ type: "الفطور", description: "بانكيك قمح كامل مع فواكه." }, { type: "الغداء", description: "بقايا تاكو السمك." }, { type: "العشاء", description: "لحم بقري مقلي مع خضروات مشكلة وأرز بني." }] },
+        { day: 7, meals: [{ type: "الفطور", description: "سموذي كيل، موز، وحليب اللوز." }, { type: "الغداء", description: "سلطة حمص." }, { type: "العشاء", description: "سمك القد مخبوز مع هليون وأرز بري." }] }
+      ],
+      honey_advice: "يهدئ السعال. ملعقة صغيرة قبل النوم."
     }
   },
 
@@ -471,20 +536,120 @@ export const DISEASE_DATA: DiseaseDatabase = {
       nutrition: { allowed: ["Cranberry", "Probiotics"], avoid: ["Caffeine", "Alcohol"], tips: ["D-mannose."] },
       medications: [{ name: "Antibiotics", dose: "As Rx", notes: "Complete course." }],
       supplements: [{ name: "D-Mannose", dose: "2g", notes: "Prevention." }, { name: "Cranberry", dose: "500mg", notes: "Prevention." }],
-      meal_plan: [{ day: 1, meals: [{ type: "Breakfast", description: "Yogurt." }, { type: "Lunch", description: "Soup." }] }],
+      meal_plan: [
+        { day: 1, meals: [{ type: "Breakfast", description: "Yogurt with probiotics." }, { type: "Lunch", description: "Clear broth soup with whole-wheat crackers." }, { type: "Dinner", description: "Baked chicken with steamed carrots." }] },
+        { day: 2, meals: [{ type: "Breakfast", description: "Oatmeal with berries." }, { type: "Lunch", description: "Large spinach salad with olive oil and lemon dressing." }, { type: "Dinner", description: "Baked salmon with brown rice." }] },
+        { day: 3, meals: [{ type: "Breakfast", description: "Scrambled eggs with whole-wheat toast." }, { type: "Lunch", description: "Leftover baked salmon and brown rice." }, { type: "Dinner", description: "Tofu stir-fry with mixed vegetables (low sodium soy sauce)." }] },
+        { day: 4, meals: [{ type: "Breakfast", description: "Cottage cheese with peaches." }, { type: "Lunch", description: "Lentil soup." }, { type: "Dinner", description: "Grilled turkey breast with sweet potato." }] },
+        { day: 5, meals: [{ type: "Breakfast", description: "Smoothie with cranberry juice (unsweetened) and spinach." }, { type: "Lunch", description: "Leftover grilled turkey and sweet potato." }, { type: "Dinner", description: "Chicken noodle soup (low sodium broth)." }] },
+        { day: 6, meals: [{ type: "Breakfast", description: "Whole-wheat pancakes with a small amount of fruit syrup." }, { type: "Lunch", description: "Hard-boiled eggs with cucumber slices." }, { type: "Dinner", description: "Baked cod with steamed green beans." }] },
+        { day: 7, meals: [{ type: "Breakfast", description: "Greek yogurt with D-Mannose powder." }, { type: "Lunch", description: "Vegetable broth with a side of whole-grain bread." }, { type: "Dinner", description: "Lean ground beef with quinoa and roasted zucchini." }] }
+      ],
       honey_advice: "Antimicrobial. 1 tsp."
     },
     ar: {
       name: "التهاب المسالك",
       overview: "عدوى بكتيرية.",
-      symptoms: ["حرقان", "تكرار بول"],
-      lifestyle_modifications: ["شرب ماء.", "تبول بعد الجماع."],
-      workout_plan: ["راحة."],
-      nutrition: { allowed: ["توت بري", "بروبيوتيك"], avoid: ["كافيين"], tips: ["مانوز."] },
-      medications: [{ name: "مضاد حيوي", dose: "حسب الوصفة", notes: "إكمال." }],
-      supplements: [{ name: "دي-مانوز", dose: "2 جم", notes: "وقاية." }],
-      meal_plan: [{ day: 1, meals: [{ type: "الفطور", description: "زبادي." }, { type: "الغداء", description: "شوربة." }] }],
+      symptoms: ["حرقان", "تكرار بول", "إلحاح في التبول"],
+      lifestyle_modifications: ["شرب الماء 2-3 لتر.", "التبول بعد الجماع."],
+      workout_plan: ["الراحة الكافية."],
+      nutrition: { allowed: ["توت بري", "بروبيوتيك"], avoid: ["كافيين", "كحول"], tips: ["مكمل دي-مانوز."] },
+      medications: [{ name: "مضاد حيوي", dose: "حسب الوصفة", notes: "إكمال الكورس كاملاً." }],
+      supplements: [{ name: "دي-مانوز", dose: "2 جم", notes: "للوقاية." }, { name: "توت بري", dose: "500 مجم", notes: "للوقاية." }],
+      meal_plan: [
+        { day: 1, meals: [{ type: "الفطور", description: "زبادي مع البروبيوتيك." }, { type: "الغداء", description: "شوربة مرقة صافية مع بسكويت قمح كامل." }, { type: "العشاء", description: "دجاج مخبوز مع جزر مطهو بالبخار." }] },
+        { day: 2, meals: [{ type: "الفطور", description: "شوفان مع توت." }, { type: "الغداء", description: "سلطة سبانخ كبيرة مع زيت زيتون وصلصة ليمون." }, { type: "العشاء", description: "سلمون مخبوز مع أرز بني." }] },
+        { day: 3, meals: [{ type: "الفطور", description: "بيض مخفوق مع خبز قمح كامل." }, { type: "الغداء", description: "بقايا سلمون مخبوز وأرز بني." }, { type: "العشاء", description: "توفو مقلي مع خضروات مشكلة (صلصة صويا قليلة الصوديوم)." }] },
+        { day: 4, meals: [{ type: "الفطور", description: "جبن قريش مع خوخ." }, { type: "الغداء", description: "شوربة عدس." }, { type: "العشاء", description: "صدر ديك رومي مشوي مع بطاطا حلوة." }] },
+        { day: 5, meals: [{ type: "الفطور", description: "سموذي مع عصير توت بري (غير محلى) وسبانخ." }, { type: "الغداء", description: "بقايا ديك رومي مشوي وبطاطا حلوة." }, { type: "العشاء", description: "شوربة دجاج بالشعيرية (مرق قليل الصوديوم)." }] },
+        { day: 6, meals: [{ type: "الفطور", description: "بانكيك قمح كامل مع كمية صغيرة من شراب الفاكهة." }, { type: "الغداء", description: "بيض مسلوق مع شرائح خيار." }, { type: "العشاء", description: "سمك القد مخبوز مع فاصوليا خضراء مطهوة بالبخار." }] },
+        { day: 7, meals: [{ type: "الفطور", description: "زبادي يوناني مع مسحوق دي-مانوز." }, { type: "الغداء", description: "مرقة خضار مع جانب من الخبز الكامل." }, { type: "العشاء", description: "لحم بقري مفروم قليل الدهن مع كينوا وكوسا مشوية." }] }
+      ],
       honey_advice: "مضاد بكتيريا. ملعقة."
+    }
+  },
+  
+  // --- WEAK IMMUNITY ---
+  weak_immunity: {
+    en: {
+      name: "Weak Immunity",
+      overview: "A weakened immune system can make you more susceptible to infections and illnesses. Strengthening your immunity involves a holistic approach.",
+      symptoms: ["Frequent infections", "Prolonged illness", "Fatigue", "Slow wound healing"],
+      lifestyle_modifications: [
+        "Prioritize 7-9 hours of quality sleep nightly.",
+        "Manage stress through meditation, yoga, or hobbies.",
+        "Practice good hygiene (hand washing).",
+        "Avoid smoking and limit alcohol intake.",
+        "Stay hydrated by drinking plenty of water."
+      ],
+      workout_plan: [
+        "Moderate exercise (30 mins daily) like brisk walking or cycling.",
+        "Include light strength training 2-3 times a week.",
+        "Avoid overtraining, which can suppress immunity.",
+        "Ensure proper cool-down and recovery."
+      ],
+      nutrition: {
+        allowed: ["Citrus fruits (Vitamin C)", "Leafy greens (Antioxidants)", "Berries", "Nuts & Seeds (Zinc, Vitamin E)", "Fatty fish (Omega-3)", "Garlic & Ginger"],
+        avoid: ["Processed foods", "Excessive sugar", "Trans fats", "Excessive caffeine"],
+        tips: ["Focus on a diverse, whole-food diet.", "Include probiotics (yogurt, kefir) for gut health.", "Cook with immune-boosting herbs and spices."]
+      },
+      medications: [], // No specific medications for weak immunity without underlying cause
+      supplements: [
+        { name: "Vitamin D", dose: "2000-4000 IU", notes: "Crucial for immune cell function." },
+        { name: "Vitamin C", dose: "500-1000 mg", notes: "Powerful antioxidant." },
+        { name: "Zinc", dose: "15-30 mg", notes: "Supports immune response." },
+        { name: "Probiotics", dose: "Daily", notes: "For gut microbiome balance." }
+      ],
+      meal_plan: [
+        { day: 1, meals: [{ type: "Breakfast", description: "Oatmeal with berries, nuts, and a sprinkle of cinnamon." }, { type: "Lunch", description: "Large spinach salad with grilled chicken, avocado, and citrus vinaigrette." }, { type: "Dinner", description: "Baked salmon with roasted broccoli and sweet potato." }] },
+        { day: 2, meals: [{ type: "Breakfast", description: "Scrambled eggs with sautéed mushrooms and whole-wheat toast." }, { type: "Lunch", description: "Lentil soup with a side of whole-grain bread." }, { type: "Dinner", description: "Turkey stir-fry with bell peppers, snap peas, and brown rice." }] },
+        { day: 3, meals: [{ type: "Breakfast", description: "Greek yogurt with flax seeds, kiwi, and a drizzle of honey." }, { type: "Lunch", description: "Quinoa salad with chickpeas, cucumber, and fresh parsley." }, { type: "Dinner", description: "Lean beef stew with carrots, celery, and potatoes." }] },
+        { day: 4, meals: [{ type: "Breakfast", description: "Whole-wheat pancakes with fresh fruit compote (no added sugar)." }, { type: "Lunch", description: "Leftover beef stew." }, { type: "Dinner", description: "Chicken and vegetable skewers with a side of wild rice." }] },
+        { day: 5, meals: [{ type: "Breakfast", description: "Smoothie with kale, banana, ginger, and almond milk." }, { type: "Lunch", description: "Tuna salad (made with Greek yogurt) on whole-wheat crackers." }, { type: "Dinner", description: "Baked cod with steamed asparagus and a small baked potato." }] },
+        { day: 6, meals: [{ type: "Breakfast", description: "Cottage cheese with sliced oranges and a pinch of turmeric." }, { type: "Lunch", description: "Black bean soup with a side of corn tortillas." }, { type: "Dinner", description: "Vegetarian chili loaded with beans, tomatoes, and various vegetables." }] },
+        { day: 7, meals: [{ type: "Breakfast", description: "Avocado toast on whole-grain bread with a sprinkle of chili flakes." }, { type: "Lunch", description: "Mixed greens salad with grilled shrimp, walnuts, and balsamic vinaigrette." }, { type: "Dinner", description: "Chicken curry with plenty of vegetables (e.g., cauliflower, peas) and brown rice." }] }
+      ],
+      honey_advice: "Natural antibacterial and anti-inflammatory properties. Use in moderation as a sweetener, perhaps 1-2 teaspoons daily."
+    },
+    ar: {
+      name: "ضعف المناعة",
+      overview: "يمكن أن يجعلك ضعف الجهاز المناعي أكثر عرضة للعدوى والأمراض. يتطلب تقوية المناعة نهجًا شاملاً.",
+      symptoms: ["التهابات متكررة", "مرض طويل الأمد", "إرهاق", "بطء التئام الجروح"],
+      lifestyle_modifications: [
+        "إعطاء الأولوية لـ 7-9 ساعات من النوم الجيد ليلاً.",
+        "إدارة التوتر من خلال التأمل أو اليوغا أو الهوايات.",
+        "ممارسة النظافة الجيدة (غسل اليدين).",
+        "تجنب التدخين والحد من تناول الكحول.",
+        "الحفاظ على رطوبة الجسم بشرب الكثير من الماء."
+      ],
+      workout_plan: [
+        "تمارين معتدلة (30 دقيقة يوميًا) مثل المشي السريع أو ركوب الدراجات.",
+        "تضمين تدريبات القوة الخفيفة 2-3 مرات في الأسبوع.",
+        "تجنب الإفراط في التدريب، والذي يمكن أن يضعف المناعة.",
+        "ضمان التهدئة والتعافي المناسبين."
+      ],
+      nutrition: {
+        allowed: ["فواكه حمضية (فيتامين ج)", "خضروات ورقية (مضادات الأكسدة)", "توت", "مكسرات وبذور (زنك، فيتامين هـ)", "أسماك دهنية (أوميغا 3)", "ثوم وزنجبيل"],
+        avoid: ["أطعمة مصنعة", "سكر زائد", "دهون متحولة", "كافيين زائد"],
+        tips: ["ركز على نظام غذائي متنوع ومتكامل.", "أدرج البروبيوتيك (الزبادي، الكفير) لصحة الأمعاء.", "اطبخ بالأعشاب والتوابل المعززة للمناعة."]
+      },
+      medications: [],
+      supplements: [
+        { name: "فيتامين د", dose: "2000-4000 وحدة دولية", notes: "ضروري لوظيفة الخلايا المناعية." },
+        { name: "فيتامين ج", dose: "500-1000 مجم", notes: "مضاد أكسدة قوي." },
+        { name: "زنك", dose: "15-30 مجم", notes: "يدعم الاستجابة المناعية." },
+        { name: "بروبيوتيك", dose: "يوميًا", notes: "لتوازن ميكروبيوم الأمعاء." }
+      ],
+      meal_plan: [
+        { day: 1, meals: [{ type: "الفطور", description: "شوفان مع توت ومكسرات ورشة قرفة." }, { type: "الغداء", description: "سلطة سبانخ كبيرة مع دجاج مشوي، أفوكادو، وصلصة حمضية." }, { type: "العشاء", description: "سلمون مخبوز مع بروكلي مشوي وبطاطا حلوة." }] },
+        { day: 2, meals: [{ type: "الفطور", description: "بيض مخفوق مع فطر سوتيه وخبز قمح كامل." }, { type: "الغداء", description: "شوربة عدس مع جانب من خبز القمح الكامل." }, { type: "العشاء", description: "ديك رومي مقلي مع فلفل حلو، بازلاء، وأرز بني." }] },
+        { day: 3, meals: [{ type: "الفطور", description: "زبادي يوناني مع بذور الكتان، كيوي، ورشة عسل." }, { type: "الغداء", description: "سلطة كينوا مع حمص، خيار، وبقدونس طازج." }, { type: "العشاء", description: "يخنة لحم بقري قليل الدهن مع جزر، كرفس، وبطاطس." }] },
+        { day: 4, meals: [{ type: "الفطور", description: "بانكيك قمح كامل مع كمبوت فواكه طازجة (بدون سكر مضاف)." }, { type: "الغداء", description: "بقايا يخنة لحم البقر." }, { type: "العشاء", description: "أسياخ دجاج وخضروات مع جانب من الأرز البري." }] },
+        { day: 5, meals: [{ type: "الفطور", description: "سموذي كيل، موز، زنجبيل، وحليب اللوز." }, { type: "الغداء", description: "سلطة تونة (مصنوعة من الزبادي اليوناني) على بسكويت قمح كامل." }, { type: "العشاء", description: "سمك القد مخبوز مع هليون مطهو بالبخار وبطاطا مخبوزة صغيرة." }] },
+        { day: 6, meals: [{ type: "الفطور", description: "جبن قريش مع شرائح برتقال ورشة كركم." }, { type: "الغداء", description: "شوربة فاصوليا سوداء مع جانب من خبز التورتيلا." }, { type: "العشاء", description: "شيلي نباتي غني بالفاصوليا والطماطم والخضروات المتنوعة." }] },
+        { day: 7, meals: [{ type: "الفطور", description: "توست أفوكادو على خبز قمح كامل مع رشة فلفل حار." }, { type: "الغداء", description: "سلطة خضراء مشكلة مع جمبري مشوي، جوز، وصلصة خل البلسميك." }, { type: "العشاء", description: "دجاج بالكاري مع الكثير من الخضروات (مثل القرنبيط، البازلاء) والأرز البني." }] }
+      ],
+      honey_advice: "خصائص طبيعية مضادة للبكتيريا ومضادة للالتهابات. يستخدم باعتدال كمحلي، ربما 1-2 ملعقة صغيرة يومياً."
     }
   }
 };

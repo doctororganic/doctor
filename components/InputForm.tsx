@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { UserData, Language } from '../types';
 import { DISEASE_DATA } from '../data';
@@ -32,6 +33,8 @@ export const InputForm: React.FC<Props> = ({ lang, onSubmit }) => {
     labs: lang === 'en' ? 'Lab Results (Optional)' : 'نتائج التحاليل (اختياري)',
     renalPanel: lang === 'en' ? 'Renal Panel' : 'تحاليل الكلى',
     liverPanel: lang === 'en' ? 'Liver Panel' : 'تحاليل الكبد',
+    cardioPanel: lang === 'en' ? 'Cardiovascular Health Panel' : 'تحاليل صحة القلب والأوعية الدموية', // Added
+    immunityPanel: lang === 'en' ? 'Immunity Panel' : 'تحاليل المناعة', // Added
     submit: lang === 'en' ? 'Generate Personalized Plan' : 'إنشاء الخطة الشخصية'
   };
 
@@ -184,6 +187,54 @@ export const InputForm: React.FC<Props> = ({ lang, onSubmit }) => {
                 type="number"
                 step="0.1"
                 className="w-full px-3 py-2 rounded-lg border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-900 text-slate-900 dark:text-white focus:border-purple-500 focus:ring-1 focus:ring-purple-500 outline-none text-sm transition-colors"
+                onChange={e => handleLabChange(lab.id, e.target.value)}
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Cardiovascular Health Panel */}
+      <div className="mb-8 p-6 rounded-2xl border border-rose-100 dark:border-rose-900/50 bg-rose-50/30 dark:bg-rose-900/10">
+        <h3 className="text-sm font-bold text-rose-600 dark:text-rose-400 uppercase tracking-wider mb-4 flex items-center gap-2">
+          <span className="w-2 h-2 bg-rose-500 rounded-full"></span> {t.cardioPanel}
+        </h3>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
+          {[
+            { id: 'systolic_bp', label: 'Systolic BP (mmHg)' },
+            { id: 'diastolic_bp', label: 'Diastolic BP (mmHg)' }
+          ].map(lab => (
+            <div key={lab.id} className="col-span-1">
+              <label className="block text-xs font-semibold text-rose-600/70 dark:text-rose-400/70 mb-1.5">{lab.label}</label>
+              <input
+                type="number"
+                step="1"
+                className="w-full px-3 py-2 rounded-lg border border-rose-200 dark:border-rose-800 bg-white dark:bg-slate-900 text-slate-900 dark:text-white focus:border-rose-500 focus:ring-1 focus:ring-rose-500 outline-none text-sm transition-colors"
+                onChange={e => handleLabChange(lab.id, e.target.value)}
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Immunity Panel (New) */}
+      <div className="mb-8 p-6 rounded-2xl border border-teal-100 dark:border-teal-900/50 bg-teal-50/30 dark:bg-teal-900/10">
+        <h3 className="text-sm font-bold text-teal-600 dark:text-teal-400 uppercase tracking-wider mb-4 flex items-center gap-2">
+          <span className="w-2 h-2 bg-teal-500 rounded-full"></span> {t.immunityPanel}
+        </h3>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
+          {[
+            { id: 'wbc', label: 'WBC (x10^9/L)' }, // Re-using WBC for specific panel
+            { id: 'ferritin', label: 'Ferritin (ng/mL)' }, // Re-using Ferritin
+            { id: 'crp', label: 'CRP (mg/L)' },
+            { id: 'esr', label: 'ESR (mm/hr)' }
+          ].map(lab => (
+            <div key={lab.id}>
+              <label className="block text-xs font-semibold text-teal-600/70 dark:text-teal-400/70 mb-1.5">{lab.label}</label>
+              <input
+                type="number"
+                step="0.1"
+                className="w-full px-3 py-2 rounded-lg border border-teal-200 dark:border-teal-800 bg-white dark:bg-slate-900 text-slate-900 dark:text-white focus:border-teal-500 focus:ring-1 focus:ring-teal-500 outline-none text-sm transition-colors"
                 onChange={e => handleLabChange(lab.id, e.target.value)}
               />
             </div>
