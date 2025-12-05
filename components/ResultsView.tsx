@@ -1,5 +1,4 @@
 
-
 import React from 'react';
 import { UserData, Language } from '../types';
 import { DISEASE_DATA } from '../data';
@@ -7,7 +6,7 @@ import { generatePDF } from '../utils/pdfGenerator';
 import { calculateCrCl, getCKDStage, analyzeRenalHealth, analyzeLiverHealth, getRenalDoseRecommendation, analyzeBloodPressure } from '../utils/healthCalculators';
 import { Download, Heart, Apple, Pill, Phone, ExternalLink, Calendar, CheckCircle, Dumbbell, AlertCircle, Info, Activity, Stethoscope, AlertTriangle } from 'lucide-react';
 import { sanitizeHtmlToPlainText } from '../utils/textProcessors';
-import { HypertensionMealPlanDetails } from './HypertensionMealPlanDetails'; // Import the new component
+// import { HypertensionMealPlanDetails } from './HypertensionMealPlanDetails'; // Removed import
 
 interface Props {
   data: UserData;
@@ -556,38 +555,34 @@ export const ResultsView: React.FC<Props> = ({ data, lang }) => {
         </div>
       </div>
 
-      {/* Conditional Meal Plan Display */}
-      {data.condition === 'hypertension' ? (
-        <HypertensionMealPlanDetails lang={lang} />
-      ) : (
-        <div className="bg-white dark:bg-dark-card rounded-3xl shadow-md p-8 transition-colors duration-300">
-          <div className="flex items-center gap-3 mb-8 text-orange-600 dark:text-orange-400">
-            <div className="p-2 bg-orange-50 dark:bg-orange-900/30 rounded-lg">
-              <Calendar size={24} />
-            </div>
-            <h3 className="text-2xl font-bold">{t.mealPlan}</h3>
+      {/* General Meal Plan Display (for all conditions, including hypertension now) */}
+      <div className="bg-white dark:bg-dark-card rounded-3xl shadow-md p-8 transition-colors duration-300">
+        <div className="flex items-center gap-3 mb-8 text-orange-600 dark:text-orange-400">
+          <div className="p-2 bg-orange-50 dark:bg-orange-900/30 rounded-lg">
+            <Calendar size={24} />
           </div>
-          <div className="flex overflow-x-auto space-x-6 pb-4 -mx-8 px-8">
-            {content.meal_plan.map((day) => (
-              <div key={day.day} className="flex-shrink-0 w-80 border border-slate-100 dark:border-slate-700 rounded-2xl p-6 bg-orange-50/20 dark:bg-orange-900/5">
-                <h4 className="font-bold text-slate-800 dark:text-white mb-5 border-b border-orange-100 dark:border-orange-900/30 pb-3">
-                  Day {day.day}
-                </h4>
-                <div className="space-y-5">
-                  {day.meals.map((meal, idx) => (
-                    <div key={idx} className="flex items-start gap-4">
-                      <div className="text-xs font-bold uppercase text-orange-600 dark:text-orange-400 bg-white dark:bg-dark-card py-1 px-2.5 rounded-full border border-orange-100 dark:border-slate-700 h-fit shadow-sm">
-                        {meal.type}
-                      </div>
-                      <p className="text-sm text-slate-700 dark:text-slate-300 pt-0.5 leading-relaxed">{sanitizeHtmlToPlainText(meal.description)}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
+          <h3 className="text-2xl font-bold">{t.mealPlan}</h3>
         </div>
-      )}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {content.meal_plan.map((day) => (
+            <div key={day.day} className="border border-slate-100 dark:border-slate-700 rounded-2xl p-6 bg-orange-50/20 dark:bg-orange-900/5">
+              <h4 className="font-bold text-slate-800 dark:text-white mb-5 border-b border-orange-100 dark:border-orange-900/30 pb-3">
+                Day {day.day}
+              </h4>
+              <div className="space-y-5">
+                {day.meals.map((meal, idx) => (
+                  <div key={idx} className="flex items-start gap-4">
+                    <div className="text-xs font-bold uppercase text-orange-600 dark:text-orange-400 bg-white dark:bg-dark-card py-1 px-2.5 rounded-full border border-orange-100 dark:border-slate-700 h-fit shadow-sm">
+                      {meal.type}
+                    </div>
+                    <p className="text-sm text-slate-700 dark:text-slate-300 pt-0.5 leading-relaxed">{sanitizeHtmlToPlainText(meal.description)}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 };
